@@ -68,3 +68,28 @@ function initScrollSuave() {
 }
 
 initScrollSuave();
+
+
+function initAnimacaoScroll() {
+  const sections = document.querySelectorAll('.js-scroll');
+
+  if (sections.length) {
+    const TRIGGER_THRESHOLD = 0.6;
+    const windowTriggerHeight = window.innerHeight * TRIGGER_THRESHOLD;
+
+    function animaScroll() {
+      sections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const isSectionVisible = (sectionTop - windowTriggerHeight) < 0;
+        if (isSectionVisible)
+          section.classList.add('ativo');
+      });
+    }
+  }
+
+  animaScroll();
+
+  window.addEventListener('scroll', animaScroll);
+}
+
+initAnimacaoScroll();
